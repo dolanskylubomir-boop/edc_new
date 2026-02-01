@@ -1,5 +1,5 @@
 
-<!-- chatbot.html – OPRAVENÁ A FUNKČNÍ VERZE (2026-02-01) -->
+<!-- chatbot.html – PLNĚ OPRAVENÁ VERZE (únor 2026) -->
 
 <div class="tereza-wrapper">
     <div class="tereza-pulse-ring"></div>
@@ -19,25 +19,25 @@
         </div>
         <div class="tereza-actions">
             <button class="tereza-newchat" title="Nový chat" aria-label="Nový chat">
-                <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor">
                     <path d="M17.65 6.35A7.958 7.958 0 0012 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08A5.99 5.99 0 0112 18c-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/>
                 </svg>
             </button>
 
-            <button id="tereza-fullscreen" class="tereza-fullscreen" title="Otevřít na celou obrazovku" aria-label="Toggle fullscreen">
-                <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+            <button id="tereza-fullscreen" class="tereza-fullscreen" title="Na celou obrazovku" aria-label="Toggle fullscreen">
+                <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor">
                     <path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/>
                 </svg>
             </button>
 
             <button id="tereza-download" class="tereza-download" title="Stáhnout konverzaci" aria-label="Stáhnout konverzaci">
-                <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor">
                     <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
                 </svg>
             </button>
 
             <button class="tereza-close" title="Zavřít" aria-label="Zavřít chat">
-                <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor">
                     <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
                 </svg>
             </button>
@@ -61,7 +61,7 @@
         <div class="tereza-input">
             <input type="text" id="tereza-input" placeholder="Napište zprávu…" autocomplete="off">
             <button id="tereza-send" title="Odeslat">
-                <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor">
                     <path d="M2,21L23,12L2,3V10L17,12L2,14V21Z"/>
                 </svg>
             </button>
@@ -70,28 +70,36 @@
 </div>
 
 <style>
-    /* Oprava viditelnosti a funkčnosti (přesuň do styles.css) */
+    /* Oprava viditelnosti ikon na mobilu + lepší responzivita */
+    .tereza-actions {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
     .tereza-actions button {
         background: none;
         border: none;
         padding: 8px;
-        margin: 0 6px;
-        cursor: pointer;
         border-radius: 50%;
+        cursor: pointer;
         transition: all 0.2s;
-        color: #0a3d3d;
+        min-width: 48px;
+        min-height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        touch-action: manipulation;
     }
 
-    .tereza-actions svg,
-    .tereza-input svg {
-        width: 24px;
-        height: 24px;
-        fill: #0a3d3d;
-        display: block;
+    .tereza-actions svg {
+        width: 28px !important;
+        height: 28px !important;
+        fill: #0a3d3d !important;
     }
 
     .tereza-actions button:hover {
-        background: rgba(10,61,61,0.1);
+        background: rgba(10,61,61,0.15);
     }
 
     .tereza-input {
@@ -101,7 +109,7 @@
         border: 1px solid #dee2e6;
         border-radius: 50px;
         padding: 8px 12px;
-        margin: 12px 0 8px;
+        margin: 12px 0;
     }
 
     .tereza-input input {
@@ -110,31 +118,36 @@
         background: transparent;
         outline: none;
         font-size: 1rem;
-        color: #333;
         padding: 0 12px;
+        color: #333;
     }
 
     .tereza-input button {
         background: none;
         border: none;
         cursor: pointer;
-        padding: 0;
+        padding: 8px;
     }
 
-    .tereza-input button:hover svg {
-        fill: #06302f;
+    .tereza-input svg {
+        width: 28px;
+        height: 28px;
+        fill: #0a3d3d;
     }
 
-    #tereza-messages {
-        flex: 1;
-        overflow-y: auto;
-        padding: 12px;
-    }
-
-    .tereza-typing {
-        display: none;
-        padding: 12px;
-        color: #666;
+    @media (max-width: 768px) {
+        .tereza-actions {
+            gap: 4px;
+        }
+        .tereza-actions button {
+            padding: 6px;
+            min-width: 44px;
+            min-height: 44px;
+        }
+        .tereza-actions svg {
+            width: 26px !important;
+            height: 26px !important;
+        }
     }
 </style>
 
@@ -145,9 +158,6 @@
 
     const API_KEY = "AIzaSyDwb_Zg716BzhMCbO_6M85NVluzPmOfQ-w";
 
-    // ────────────────────────────────────────────────
-    // System prompt (zůstává stejný – sem vlož celý text)
-    // ────────────────────────────────────────────────
     // System prompt (zůstává beze změny)
     const systemPromptText = `Jsi Terezka, milá a lidská virtuální asistentka EDC. Ahoj! 😊 Jsem tu, abych ti pomohla s čímkoli okolo energetiky, sdílení elektřiny nebo EDC. 
                 Odpovídej vždy v češtině, přátelsky, jako člověk – používej hovorový jazyk, smajlíky kde to sedí, buď empatická a ochotná pomoci. 
@@ -234,10 +244,8 @@
                 Kariéra:
                 Pozice: Analytik dat, Architekt kyberbezpečnosti, Back-end developer, Full-stack Developer, Specialista fyzické bezpečnosti.`;
 
-    const welcomeMessage = {
-        role: 'model',
-        parts: [{ text: 'Vítejte! Jsem Terezka, vaše virtuální asistentka EDC. Jak vám dnes mohu pomoci?' }]
-    };
+
+    const welcomeMessage = { role: 'model', parts: [{ text: 'Vítejte! Jsem Terezka, vaše virtuální asistentka EDC. Jak vám dnes mohu pomoci?' }] };
 
     let messages = [welcomeMessage];
 
@@ -285,111 +293,75 @@
         renderMessages();
     }
 
-    function openSection(file) {
-        if (window.loadContent) window.loadContent(file);
-    }
-
     function handleLocalIntents(msg) {
         const l = msg.toLowerCase();
         if (l.includes('video')) {
             addBot('Otevřela jsem stránku s video návody.');
-            openSection('sdileni_video_content.html');
+            if (window.loadContent) window.loadContent('sdileni_video_content.html');
             return true;
         }
         if (l.includes('dokument')) {
             addBot('Otevřela jsem stránku s dokumenty.');
-            openSection('sdileni_dokumenty_content.html');
+            if (window.loadContent) window.loadContent('sdileni_dokumenty_content.html');
             return true;
         }
         if (l.includes('faq')) {
             addBot('Otevřela jsem stránku s FAQ.');
-            openSection('sdileni_FAQ_content.html');
+            if (window.loadContent) window.loadContent('sdileni_FAQ_content.html');
             return true;
         }
         if (l.includes('sdílení') || l.includes('sdileni')) {
             addBot('Otevřela jsem stránku o sdílení elektřiny.');
-            openSection('sdileni_content.html');
+            if (window.loadContent) window.loadContent('sdileni_content.html');
             return true;
         }
         return false;
     }
 
-    // Seznam souborů k prohledání při fallbacku
+    // Fallback – prohledávání obsahu stránek při selhání API
     const EDC_CONTENT_FILES = [
-        'index_content.html',
-        'sdileni_content.html',
-        'sdileni_dokumenty_content.html',
-        'sdileni_video_content.html',
-        'sdileni_FAQ_content.html',
-        'akumulace_content.html',
-        'akumulace_dokumenty_content.html',
-        'akumulace_video_content.html',
-        'akumulace_faq_content.html',
-        'flexibilita_content.html',
-        'flexibilita_dokumenty_content.html',
-        'flexibilita_video_content.html',
-        'flexibilita_FAQ_content.html',
-        'semafor_content.html',
-        'M2M_content.html',
-        'aktuality_content.html',
-        'faq_content.html',
-        'slovnik_content.html',
-        'kariera_content.html',
-        'struktura_spolecnosti_content.html',
-        'povinna-sdeleni_content.html'
-        // přidej další soubory, pokud máš
+        'index_content.html', 'sdileni_content.html', 'sdileni_dokumenty_content.html',
+        'sdileni_video_content.html', 'sdileni_FAQ_content.html', 'akumulace_content.html',
+        'akumulace_dokumenty_content.html', 'akumulace_video_content.html', 'akumulace_faq_content.html',
+        'flexibilita_content.html', 'flexibilita_dokumenty_content.html', 'flexibilita_video_content.html',
+        'flexibilita_FAQ_content.html', 'semafor_content.html', 'M2M_content.html',
+        'aktuality_content.html', 'faq_content.html', 'slovnik_content.html', 'kariera_content.html'
     ];
 
-    // Načte všechny soubory a vrátí jejich čistý text
     async function loadAllContentFiles() {
         const promises = EDC_CONTENT_FILES.map(async file => {
             try {
                 const res = await fetch(file);
                 if (!res.ok) return '';
                 const text = await res.text();
-                return text
-                    .replace(/<[^>]+>/g, ' ')
-                    .replace(/\s+/g, ' ')
-                    .replace(/&[a-zA-Z0-9#]+;/g, ' ')
-                    .trim();
+                return text.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
             } catch {
                 return '';
             }
         });
-
         const results = await Promise.all(promises);
         return results.filter(Boolean).join('\n\n---\n\n');
     }
 
-    // Najde relevantní úryvky v textu
     function findRelevantSections(query, fullText) {
-        const queryLower = query.toLowerCase().trim();
-        const keywords = queryLower.split(/\s+/).filter(w => w.length > 2);
-
+        const q = query.toLowerCase().trim();
+        const kws = q.split(/\s+/).filter(w => w.length > 2);
         const sections = fullText.split(/\n{3,}|---/);
-        const relevant = [];
-
-        for (const section of sections) {
-            const text = section.toLowerCase();
-            const hasPhrase = text.includes(queryLower);
-            const matchedKeywords = keywords.filter(kw => text.includes(kw)).length;
-
-            if (hasPhrase || matchedKeywords >= Math.min(2, keywords.length)) {
-                const start = Math.max(0, text.indexOf(queryLower) - 120);
-                const excerpt = section.substring(start, start + 500).trim();
-                relevant.push(excerpt);
+        const rel = [];
+        for (const sec of sections) {
+            const t = sec.toLowerCase();
+            if (t.includes(q) || kws.filter(k => t.includes(k)).length >= 2) {
+                const start = Math.max(0, t.indexOf(q) - 150);
+                rel.push(sec.substring(start, start + 600).trim());
             }
         }
-
-        return relevant.length > 0 ? relevant.slice(0, 5) : [];
+        return rel.length > 0 ? rel.slice(0, 4) : [];
     }
 
-    // Hlavní funkce odeslání
     async function send() {
         const input = document.getElementById('tereza-input');
         const msg = input.value.trim();
         if (!msg) return;
-
         input.value = '';
 
         messages.push({ role: 'user', parts: [{ text: msg }] });
@@ -401,7 +373,7 @@
 
         try {
             const r = await fetch(
-                `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`,
+                `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${API_KEY}`,
                 {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -415,29 +387,21 @@
             if (!r.ok) throw new Error(`API selhalo: ${r.status}`);
 
             const d = await r.json();
-            const reply = d.candidates?.[0]?.content?.parts?.[0]?.text 
-                || 'Odpověď se nepodařilo načíst, zkuste to znovu.';
-
+            const reply = d.candidates?.[0]?.content?.parts?.[0]?.text || 'Odpověď se nepodařilo načíst.';
             addBot(reply);
-
         } catch (err) {
             console.warn('Gemini API selhalo:', err);
-
             addBot('Momentíček... API zrovna nefunguje, hledám odpověď přímo v obsahu webu EDC... 🔍');
 
             try {
                 const allContent = await loadAllContentFiles();
                 const relevant = findRelevantSections(msg, allContent);
-
-                let fallbackReply = relevant.length > 0
-                    ? `Našla jsem tyto relevantní části přímo z webu EDC:\n\n`
-                    + relevant.map((t, i) => `**${i+1}.** ${t}\n`).join('\n')
-                    + `\n\nPokud to nestačí, zkuste otázku upřesnit. 😊`
-                    : `Bohužel jsem v obsahu stránek nenašla nic přímo souvisejícího. Zkuste to jinak formulovat nebo napište na info@edc-cr.cz.`;
-
-                addBot(fallbackReply);
+                let fb = relevant.length > 0
+                    ? `Našla jsem tyto relevantní části přímo z webu:\n\n` + relevant.map((t,i)=>`**${i+1}.** ${t}\n`).join('\n') + `\n\nPokud to nestačí, zkuste otázku upřesnit. 😊`
+                    : `Bohužel jsem v obsahu nenašla nic přímo souvisejícího. Zkuste to jinak nebo napište na info@edc-cr.cz.`;
+                addBot(fb);
             } catch (e) {
-                addBot('Ani se mi nepodařilo načíst obsah stránek... 😔 Zkuste to později nebo napište na info@edc-cr.cz.');
+                addBot('Ani se mi nepodařilo načíst obsah stránek... 😔 Zkuste později nebo napište na info@edc-cr.cz.');
             }
         } finally {
             document.getElementById('tereza-typing').style.display = 'none';
@@ -445,15 +409,25 @@
     }
 
     // ────────────────────────────────────────────────
-    // Event listenery – přiřazeny jednou, bez přepisování
+    // Event listenery
     // ────────────────────────────────────────────────
     document.querySelector('.tereza-toggle').onclick = () =>
         document.getElementById('tereza-chat').classList.toggle('open');
 
     document.querySelector('.tereza-newchat').onclick = startNewChat;
 
-    document.querySelector('.tereza-close').onclick = () =>
-        document.getElementById('tereza-chat').classList.remove('open');
+    // KRITICKÁ OPRAVA: Zavírání chatu + UKONČENÍ FULLSCREEN
+    document.querySelector('.tereza-close').onclick = () => {
+        const chat = document.getElementById('tereza-chat');
+        chat.classList.remove('open');
+
+        // VŽDY ukončit fullscreen při zavírání chatu
+        if (document.fullscreenElement) {
+            document.exitFullscreen?.() ||
+            document.webkitExitFullscreen?.() ||
+            document.msExitFullscreen?.();
+        }
+    };
 
     document.getElementById('tereza-send').onclick = send;
 
@@ -464,7 +438,7 @@
         }
     });
 
-    // Fullscreen
+    // Fullscreen toggle
     document.getElementById('tereza-fullscreen').onclick = () => {
         const chat = document.getElementById('tereza-chat');
         if (!document.fullscreenElement) {
@@ -478,16 +452,17 @@
         }
     };
 
+    // Aktualizace ikony při změně fullscreen stavu
     document.addEventListener('fullscreenchange', () => {
-        const btn = document.getElementById('tereza-fullscreen');
         const isFull = !!document.fullscreenElement;
-        const path = btn.querySelector('path');
+        const btn = document.getElementById('tereza-fullscreen');
+        const path = btn?.querySelector('path');
         if (path) {
             path.setAttribute('d', isFull
                 ? 'M5 16h3v3h2v-5H5v2zm3-8H5v2h5V5H8v3zm6 11h2v-3h3v-2h-5v5zm2-11V5h-2v5h5V8h-3z'
                 : 'M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z');
         }
-        btn.title = isFull ? 'Zmenšit' : 'Otevřít na celou obrazovku';
+        if (btn) btn.title = isFull ? 'Zmenšit' : 'Na celou obrazovku';
     });
 
     // Stažení konverzace
@@ -514,13 +489,9 @@
         URL.revokeObjectURL(url);
     };
 
-    console.log('Terezka chatbot plně načten – fallback při selhání API je aktivní');
+    console.log('Terezka chatbot plně načten a opraven – zavírání + fullscreen funguje');
 })();
 </script>
-
-
-
-
 
 
 
